@@ -42,8 +42,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
 
     // Reactivex
-    def RXVersion = '2.0.1'
-    implementation "io.reactivex.rxjava2:rxandroid:$RXVersion"
+    def rxjava2_version = '2.0.1'
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxjava2_version"
 
     //Gson
     def gsonVersion = '2.8.2'
