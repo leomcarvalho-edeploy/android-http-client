@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidHttpClient.iml" filepath="$PROJECT_DIR$/AndroidHttpClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/HttpClient/HttpClient.iml" filepath="$PROJECT_DIR$/HttpClient/HttpClient.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LibHttpClient.iml" filepath="$PROJECT_DIR$/LibHttpClient.iml" />
       <module fileurl="file://D:\Users\lcarvalho\AndroidStudioProjects\EdeployLibraries\LibHttpClient\HttpClient\app.iml" filepath="D:\Users\lcarvalho\AndroidStudioProjects\EdeployLibraries\LibHttpClient\HttpClient\app.iml" />
     </modules>
   </component>

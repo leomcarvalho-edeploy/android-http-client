@@ -48,6 +48,9 @@ public class ApiClient {
 
     public void withLog() {
         try {
+            if(clientBuilder==null) {
+                clientBuilder = getClientBuilder();
+            }
             clientBuilder = RetrofitLogging.logging(clientBuilder);
         } catch (IOException e) {
             e.printStackTrace();
