@@ -12,17 +12,6 @@ public class ApiRequest{
     private String contentType = "application/json";
     private Boolean withAuth = false;
 
-    private static volatile ApiRequest apiRequestInstance;
-
-    private ApiRequest(){}
-
-    public static ApiRequest getInstance() {
-        if(apiRequestInstance == null){
-            apiRequestInstance = new ApiRequest();
-        }
-        return apiRequestInstance;
-    }
-
     public String getEndPoint() {
         return endPoint;
     }
