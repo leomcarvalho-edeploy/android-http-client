@@ -48,7 +48,7 @@ public class ApiClient {
     }
 
     public void setEndPoint(String endPoint) {
-        apiRequest.setApiKey(endPoint);
+        apiRequest.setEndPoint(endPoint);
         client = new Retrofit.Builder()
                 .baseUrl(apiRequest.getEndPoint())
                 .client(clientBuilder.build())
@@ -58,7 +58,7 @@ public class ApiClient {
     }
 
     public void setAppId(String appId) {
-        apiRequest.setApiKey(appId);
+        apiRequest.setAppId(appId);
     }
 
     public void withLog() {
