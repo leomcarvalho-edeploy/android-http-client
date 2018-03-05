@@ -1,6 +1,6 @@
 package br.com.e_deploy.libhttpclient.api;
 
-import java.lang.reflect.ParameterizedType;
+import io.reactivex.annotations.NonNull;
 
 /**
  * Created by lcarvalho on 02/03/2018.
@@ -8,15 +8,13 @@ import java.lang.reflect.ParameterizedType;
 
 public class BaseApi<I> {
 
-    private Class<I> classI;
+    private I api;
 
-    @SuppressWarnings("unchecked")
-    public BaseApi() {
-        this.classI = (Class<I>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[0];
+    public BaseApi(@NonNull Class<? extends I> type) {
+        this.api = ApiClient.getInstance().getClient().create(type);
     }
 
     public I getApi() {
-        return ApiClient.getInstance().getClient().create(classI);
+        return api;
     }
 }

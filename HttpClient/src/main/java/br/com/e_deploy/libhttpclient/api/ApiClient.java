@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import br.com.e_deploy.libhttpclient.exceptions.URLException;
-import br.com.e_deploy.libhttpclient.models.ApiRequest;
 import io.reactivex.annotations.NonNull;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -17,12 +16,10 @@ public class ApiClient {
     private static ApiClient apiClientInstance;
 
     private OkHttpClient.Builder clientBuilder;
-    private ApiRequest apiRequest;
     private Retrofit client;
 
     private ApiClient() {
         apiClientInstance = this;
-        apiRequest = new ApiRequest();
         clientBuilder = new OkHttpClient.Builder()
                 .readTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS);
@@ -48,9 +45,8 @@ public class ApiClient {
     }
 
     public void setEndPoint(String endPoint) {
-        apiRequest.setEndPoint(endPoint);
         client = new Retrofit.Builder()
-                .baseUrl(apiRequest.getEndPoint())
+                .baseUrl(endPoint)
                 .client(clientBuilder.build())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
