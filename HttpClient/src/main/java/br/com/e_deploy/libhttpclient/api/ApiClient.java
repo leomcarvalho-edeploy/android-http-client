@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import br.com.e_deploy.libhttpclient.exceptions.URLException;
 import br.com.e_deploy.libhttpclient.models.ApiRequest;
 import io.reactivex.annotations.NonNull;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -24,8 +25,11 @@ public class ApiClient {
         apiRequest = new ApiRequest();
         clientBuilder = new OkHttpClient.Builder()
                 .readTimeout(30, TimeUnit.SECONDS)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .addInterceptor(new RetrofitInterceptor(apiRequest));
+                .connectTimeout(30, TimeUnit.SECONDS);
+    }
+
+    public void setInterceptor(@NonNull Interceptor interceptor) {
+        clientBuilder.addInterceptor(interceptor);
     }
 
     @NonNull
@@ -37,14 +41,10 @@ public class ApiClient {
     }
 
     protected Retrofit getClient() {
-        if(client == null) {
+        if (client == null) {
             throw new URLException();
         }
         return client;
-    }
-
-    public void setApiKey(String apiKey) {
-        apiRequest.setApiKey(apiKey);
     }
 
     public void setEndPoint(String endPoint) {
@@ -55,10 +55,6 @@ public class ApiClient {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-    }
-
-    public void setAppId(String appId) {
-        apiRequest.setAppId(appId);
     }
 
     public void withLog() {
