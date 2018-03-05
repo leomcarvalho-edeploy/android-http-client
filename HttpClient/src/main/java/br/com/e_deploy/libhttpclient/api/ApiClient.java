@@ -25,10 +25,6 @@ public class ApiClient {
                 .connectTimeout(30, TimeUnit.SECONDS);
     }
 
-    public void setInterceptor(@NonNull Interceptor interceptor) {
-        clientBuilder.addInterceptor(interceptor);
-    }
-
     @NonNull
     public static ApiClient getInstance() {
         if (apiClientInstance == null) {
@@ -44,7 +40,12 @@ public class ApiClient {
         return client;
     }
 
-    public void setEndPoint(String endPoint) {
+    public void setEndPoint(@NonNull String endPoint, @NonNull Interceptor interceptor) {
+        clientBuilder.addInterceptor(interceptor);
+        setEndPoint(endPoint);
+    }
+
+    public void setEndPoint(@NonNull String endPoint) {
         client = new Retrofit.Builder()
                 .baseUrl(endPoint)
                 .client(clientBuilder.build())
