@@ -10,7 +10,7 @@ public class BaseApi<I> {
 
     private I api;
 
-    public BaseApi(@NonNull Class<? extends I> type) {
+    public BaseApi(@NonNull Class<I> type) {
         this.api = ApiClient.getInstance().getClient().create(type);
     }
 
